@@ -4,6 +4,7 @@
 """
 from werkzeug.exceptions import HTTPException
 
+from fastapi import FastAPI
 from flask import Flask, jsonify, render_template
 from flask_cors import CORS
 from flask_gzip import Gzip
@@ -52,6 +53,7 @@ def configure_compression(app):
 
 def create_app(config):
     app = Flask(__name__, static_url_path='/public', static_folder='./public')
+    app = FastAPI()
     configure_app(app, config)
     configure_blueprints(app)
     configure_home(app)
